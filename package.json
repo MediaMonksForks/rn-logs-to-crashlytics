@@ -1,0 +1,43 @@
+{
+  "_from": "git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+  "_id": "rn-logs-to-crashlytics@1.0.0",
+  "_inBundle": false,
+  "_location": "/rn-logs-to-crashlytics",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "rn-logs-to-crashlytics@git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+    "name": "rn-logs-to-crashlytics",
+    "escapedName": "rn-logs-to-crashlytics",
+    "rawSpec": "git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+    "saveSpec": "git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+    "fetchSpec": "https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git",
+    "gitCommittish": "f44fef58836f1d3d0e42cd7526e22c61e10491ea"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+  "_spec": "rn-logs-to-crashlytics@git+https://git@github.com/leoacevedo/rn-logs-to-crashlytics.git#f44fef58836f1d3d0e42cd7526e22c61e10491ea",
+  "_where": "/Users/lacevedo/source/react-native/aeromexico-aeromexico-app",
+  "author": "",
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "",
+  "keywords": [
+    "react-native"
+  ],
+  "license": "",
+  "main": "index.js",
+  "name": "rn-logs-to-crashlytics",
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  },
+  "dependencies": {
+    "react-native-fabric": "0.5.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}
