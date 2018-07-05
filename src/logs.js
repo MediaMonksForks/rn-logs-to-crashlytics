@@ -57,7 +57,7 @@ const chainFunction = function(console, methodName, logFunction) {
         console[methodName] = function(error) {
             let errorString = errorAsString(error);
             logFunction(errorString)
-            return original(errorString)
+            return original(error)
         }
     }
 }
