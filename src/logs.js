@@ -54,10 +54,10 @@ const logToCrashlyticsFunction = function(level) {
 const chainFunction = function(console, methodName, logFunction) {
   if (console[methodName]) {
     const original = console[methodName];
-    console[methodName] = function(error) {
-      let errorString = errorAsString(error);
+    console[methodName] = function(...errors) {
+      let errorString = errorAsString(errors);
       logFunction(errorString);
-      return original(error);
+      return original(...errors);
     };
   }
 };
