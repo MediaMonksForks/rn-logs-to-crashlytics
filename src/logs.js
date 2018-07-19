@@ -1,6 +1,6 @@
-const Fabric = require('react-native-fabric')
+const Fabric = require("react-native-fabric");
 
-const { Crashlytics } = Fabric
+const { Crashlytics } = Fabric;
 
 /**
  * This method is almost copied from react-native-fabric.
@@ -12,66 +12,66 @@ const { Crashlytics } = Fabric
  */
 
 const errorAsString = function(error) {
-    var errorString;
+  var errorString;
 
-    if (typeof error === "string" || error instanceof String) {
-      errorString = `Error: ${error}`;
-    }
-    else if (typeof error === "number") {
-      errorString = `Error code: ${error}`
-    }
-    else if (typeof error === "object") {
-      errorString = {}; // will stringify in the end
+  if (typeof error === "string" || error instanceof String) {
+    errorString = `Error: ${error}`;
+  } else if (typeof error === "number") {
+    errorString = `Error code: ${error}`;
+  } else if (typeof error === "object") {
+    errorString = {}; // will stringify in the end
 
-      // Pass everything in as a string or number to be safe
-      for (var k in error) {
-        if (error.hasOwnProperty(k)) {
-          if (((typeof error[k]) !== "number") && ((typeof error[k]) !== "string") && !(error[k] instanceof String)) {
-            errorString[k] = JSON.stringify(error[k]);
-          }
-          else {
-            errorString[k] = error[k]
-          }
+    // Pass everything in as a string or number to be safe
+    for (var k in error) {
+      if (error.hasOwnProperty(k)) {
+        if (
+          typeof error[k] !== "number" &&
+          typeof error[k] !== "string" &&
+          !(error[k] instanceof String)
+        ) {
+          errorString[k] = JSON.stringify(error[k]);
+        } else {
+          errorString[k] = error[k];
         }
       }
-      errorString = `Error: ${JSON.stringify(errorString)}`
     }
-    else {
-      // Array?
-      // Fall back on JSON
-      errorString = `Error: ${JSON.stringify(error)}`
-    }
-    return errorString;
-}
+    errorString = `Error: ${JSON.stringify(errorString)}`;
+  } else {
+    // Array?
+    // Fall back on JSON
+    errorString = `Error: ${JSON.stringify(error)}`;
+  }
+  return errorString;
+};
 
 const logToCrashlyticsFunction = function(level) {
-    return function(error) {
-        errorString = `${level}: ${error}`
-        Crashlytics.log(errorString);
-    }
-}
+  return function(error) {
+    errorString = `${level}: ${error}`;
+    Crashlytics.log(errorString);
+  };
+};
 
 const chainFunction = function(console, methodName, logFunction) {
-    if (console[methodName]) {
-        const original = console[methodName]
-        console[methodName] = function(error) {
-            let errorString = errorAsString(error);
-            logFunction(errorString)
-            return original(error)
-        }
-    }
-}
+  if (console[methodName]) {
+    const original = console[methodName];
+    console[methodName] = function(error) {
+      let errorString = errorAsString(error);
+      logFunction(errorString);
+      return original(error);
+    };
+  }
+};
 
 const init = function(console) {
-    const errorToCrashlytics = logToCrashlyticsFunction('E')
-    const logToCrashlytics = logToCrashlyticsFunction('L')
-    const warnToCrashlytics = logToCrashlyticsFunction('W')
-    const infoToCrashlytics = logToCrashlyticsFunction('I')
+  const errorToCrashlytics = logToCrashlyticsFunction("E");
+  const logToCrashlytics = logToCrashlyticsFunction("L");
+  const warnToCrashlytics = logToCrashlyticsFunction("W");
+  const infoToCrashlytics = logToCrashlyticsFunction("I");
 
-    chainFunction(console, 'error', errorToCrashlytics)
-    chainFunction(console, 'log', logToCrashlytics)
-    chainFunction(console, 'warn', warnToCrashlytics)
-    chainFunction(console, 'info', infoToCrashlytics)
-}
+  chainFunction(console, "error", errorToCrashlytics);
+  chainFunction(console, "log", logToCrashlytics);
+  chainFunction(console, "warn", warnToCrashlytics);
+  chainFunction(console, "info", infoToCrashlytics);
+};
 
-module.exports.init = init
+module.exports.init = init;
