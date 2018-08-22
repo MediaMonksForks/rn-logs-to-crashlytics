@@ -1,3 +1,5 @@
+import * as JsonCycle from "./cycle";
+
 const Fabric = require("react-native-fabric");
 
 const { Crashlytics } = Fabric;
@@ -29,7 +31,7 @@ const errorAsString = function(error) {
           typeof error[k] !== "string" &&
           !(error[k] instanceof String)
         ) {
-          errorString[k] = JSON.stringify(error[k]);
+          errorString[k] = JSON.stringify(JsonCycle.decycle(error[k]));
         } else {
           errorString[k] = error[k];
         }
@@ -39,7 +41,7 @@ const errorAsString = function(error) {
   } else {
     // Array?
     // Fall back on JSON
-    errorString = `Error: ${JSON.stringify(error)}`;
+    errorString = `Error: ${JSON.stringify(JsonCycle.decycle(error))}`;
   }
   return errorString;
 };
